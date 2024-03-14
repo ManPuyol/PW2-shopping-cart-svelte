@@ -3,11 +3,6 @@
 
   import CartCount from './CartCount.svelte';
 
-    import Button from '@smui/button';
-    import Badge from '@smui-extra/badge';
-    import Icon from '@smui/icon-button';
-    import { Label } from '@smui/button';
-
     let cart = [];
     const products = [
       { id: 1, name: 'Producto 1', quantity: 0 },
@@ -48,7 +43,6 @@
   </div>
   
   <style >
-
     .container {
       display: flex;
       flex-direction: column;
