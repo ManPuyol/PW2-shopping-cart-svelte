@@ -1,4 +1,8 @@
 <script>
+  import ProductList from './ProductList.svelte';
+
+  import CartCount from './CartCount.svelte';
+
     import Button from '@smui/button';
     import Badge from '@smui-extra/badge';
     import Icon from '@smui/icon-button';
@@ -39,22 +43,8 @@
   
   <div class="container">
     <h1>Tienda</h1>
-    <div class="products">
-      {#each products as product}
-        <div class="product">
-          <span>{product.name}</span>
-          <Button on:click={() => addToCart(product.id)}>+</Button>
-          <Button on:click={() => removeFromCart(product.id)}>-</Button>
-        </div>
-      {/each}
-    </div>
-    <div class="cart">
-      <Badge>
-        <Icon class="material-icons">shopping_cart</Icon>
-        { totalItemsInCart() }
-      </Badge>
-      <span>Carrito</span>
-    </div>
+<ProductList products={products} {removeFromCart} {addToCart}  ></ProductList>
+<CartCount count={totalItemsInCart} ></CartCount>
   </div>
   
   <style >
@@ -64,23 +54,6 @@
       flex-direction: column;
       align-items: center;
       padding: 20px;
-    }
-    .products {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 100%;
-    }
-    .product {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .cart {
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
   </style>
   
