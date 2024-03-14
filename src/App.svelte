@@ -1,8 +1,9 @@
 <script>
     import Button from '@smui/button';
-    import Badge from '@smui/badge';
-    import Icon from '@smui/icon';
-  
+    import Badge from '@smui-extra/badge';
+    import Icon from '@smui/icon-button';
+    import { Label } from '@smui/button';
+
     let cart = [];
     const products = [
       { id: 1, name: 'Producto 1', quantity: 0 },
@@ -14,6 +15,7 @@
       const productIndex = cart.findIndex((p) => p.id === productId);
       if (productIndex > -1) {
         cart[productIndex].quantity += 1;
+        cart = cart
       } else {
         const product = products.find((p) => p.id === productId);
         cart = [...cart, { ...product, quantity: 1 }];
@@ -48,14 +50,15 @@
       {/each}
     </div>
     <div class="cart">
-      <Badge overlap={false} secondary={true} content={totalItemsInCart()}>
+      <Badge  position='middle' color='primary' use={totalItemsInCart()}>
         <Icon class="material-icons">shopping_cart</Icon>
       </Badge>
-      <span>Carrito</span>
+      <span>Carrito { totalItemsInCart() }</span>
     </div>
   </div>
   
-  <style>
+  <style >
+
     .container {
       display: flex;
       flex-direction: column;
@@ -64,6 +67,7 @@
     }
     .products {
       display: flex;
+      flex-direction: column;
       justify-content: space-around;
       width: 100%;
     }
