@@ -15,7 +15,6 @@
       const productIndex = cart.findIndex((p) => p.id === productId);
       if (productIndex > -1) {
         cart[productIndex].quantity += 1;
-        cart = cart
       } else {
         const product = products.find((p) => p.id === productId);
         cart = [...cart, { ...product, quantity: 1 }];
@@ -33,7 +32,7 @@
       }
     };
   
-    const totalItemsInCart = () => {
+    $: totalItemsInCart = () => {
       return cart.reduce((acc, curr) => acc + curr.quantity, 0);
     };
   </script>
@@ -50,10 +49,11 @@
       {/each}
     </div>
     <div class="cart">
-      <Badge  position='middle' color='primary' use={totalItemsInCart()}>
+      <Badge>
         <Icon class="material-icons">shopping_cart</Icon>
+        { totalItemsInCart() }
       </Badge>
-      <span>Carrito { totalItemsInCart() }</span>
+      <span>Carrito</span>
     </div>
   </div>
   
